@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
 <title>AACoding04-8</title>
 <style>
 .correct{
@@ -30,6 +29,9 @@ input {
 </head>
 <body translate="no">
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<audio id="sad" controls>
+<source src="https://math.seattleacademy.org/garyanderson/snd/sad.mp3" type="audio/mpeg">
+</audio>
 <div>Timer: <span id="theTimer">0</span> Score: <span id="score">0</span></div>
 <h1>reimy's problems</h1>
 <ol>
@@ -46,8 +48,10 @@ input {
 </ol>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script id="rendered-js">
-setInterval(onTimer,1000);
-function onTimer(){
+const sad = document.getElementById("sad");
+
+setInterval(onTimer, 1000);
+function onTimer() {
   let theTimer = Number($("#theTimer").text());
   theTimer = theTimer + 1;
   $("#theTimer").text(theTimer);
@@ -55,15 +59,24 @@ function onTimer(){
 
 $("input").change(onChange);
 
-function onChange(evt){
+function onChange(evt) {
   let correct = $(this).data("correct");
   let response = $(this).val();
-  if(correct==response){ $(this).removeClass("incorrect").addClass("correct");
-                        
-let score = Number($("#score").text());
-   score = score + 1;
-   $("#score").text(score);
-  } else{                 $(this).removeClass("correct").addClass("incorrect");         }
+  if (correct == response) {
+    $(this)
+      .removeClass("incorrect")
+      .addClass("correct");
+
+    let score = Number($("#score").text());
+    score = score + 1;
+    $("#score").text(score);
+  } else {
+    $(this)
+      .removeClass("correct")
+      .addClass("incorrect");
+    if(Math.random()> 0.9) {}
+    sad.play();
+  }
 }
     </script>
 </body>
