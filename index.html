@@ -1,9 +1,10 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>AACoding04-8</title>
+<title>CodePen - AACoding04-8</title>
 <style>
 .correct{
   background:lightgreen;
@@ -25,15 +26,21 @@ input {
   border: 2px solid lightblue;
   border-radius: 4px;
 }
+
+audio {
+  display: none;
+}
 </style>
 </head>
 <body translate="no">
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <audio id="sad" controls>
-<source src="snd/sad.mp3" type="audio/mpeg">
+<source src="https://math.seattleacademy.org/garyanderson/snd/sad.mp3" type="audio/mpeg">
 </audio>
-<div>Timer: <span id="theTimer">0</span> Score: <span id="score">0</span></div>
 <h1>reimy's problems</h1>
+<div>Timer: <span id="theTimer">0</span> Score: <span id="score">0</span>
+Errors: <span id="errors">0</span>
+</div>
 <ol>
 <li> \( 2^3 \) <input data-correct="8" /> </li>
 <li> \( \sqrt[3]{8} \) <input data-correct="2" /> </li>
@@ -49,7 +56,6 @@ input {
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script id="rendered-js">
 const sad = document.getElementById("sad");
-
 setInterval(onTimer, 1000);
 function onTimer() {
   let theTimer = Number($("#theTimer").text());
@@ -74,6 +80,11 @@ function onChange(evt) {
     $(this)
       .removeClass("correct")
       .addClass("incorrect");
+    let sound = sound + 1;
+    let errors = Number($("#errors").text());
+    errors = errors + 1;
+    $("#errors").text(errors);
+  
     if(Math.random()> 0.9) {}
     sad.play();
   }
